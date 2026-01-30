@@ -1,3 +1,6 @@
+'use client'
+
+import * as React from "react"
 import { Calendar as CalendarIcon, Upload } from "lucide-react"
 import { format } from "date-fns"
 
@@ -49,6 +52,8 @@ const requiredOutputs = [
 ]
 
 export default function RequestProjectPage() {
+  const [date, setDate] = React.useState<Date>()
+  
   return (
     <div className="bg-muted/30">
         <div className="container mx-auto px-4 py-16 md:py-24">
@@ -94,15 +99,20 @@ export default function RequestProjectPage() {
                                     variant={"outline"}
                                     className={cn(
                                         "w-full justify-start text-left font-normal",
-                                        !Date && "text-muted-foreground"
+                                        !date && "text-muted-foreground"
                                     )}
                                     >
                                     <CalendarIcon className="mr-2 h-4 w-4" />
-                                    <span>Pick a date</span>
+                                    {date ? format(date, "PPP") : <span>Pick a date</span>}
                                     </Button>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-auto p-0">
-                                    <Calendar mode="single" initialFocus />
+                                    <Calendar
+                                      mode="single"
+                                      selected={date}
+                                      onSelect={setDate}
+                                      initialFocus
+                                    />
                                 </PopoverContent>
                                 </Popover>
                             </div>
