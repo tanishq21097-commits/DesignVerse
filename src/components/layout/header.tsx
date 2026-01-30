@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { Logo } from '../icons';
+import { ThemeToggle } from '../theme-toggle';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -78,16 +79,17 @@ export function Header() {
 
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center">
-            <Button asChild variant="ghost" className="hidden sm:inline-flex">
+            <Button asChild variant="ghost" className="hidden sm:inline-flex" suppressHydrationWarning>
               <Link href="/auth">Log in</Link>
             </Button>
-            <Button asChild className="hidden sm:inline-flex">
+            <Button asChild className="hidden sm:inline-flex" suppressHydrationWarning>
               <Link href="/auth">Sign Up</Link>
             </Button>
-            <Button asChild variant="outline" className="ml-2">
+            <Button asChild variant="outline" className="ml-2" suppressHydrationWarning>
               <Link href="/auth">Become a Designer</Link>
             </Button>
           </nav>
+          <ThemeToggle />
         </div>
       </div>
     </header>
