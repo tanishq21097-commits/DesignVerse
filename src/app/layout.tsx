@@ -36,6 +36,7 @@ export default function RootLayout({
           fontPoppins.variable,
           fontPTSans.variable
         )}
+        suppressHydrationWarning={true}
       >
         <div className="relative flex min-h-dvh flex-col">
           <Header />
